@@ -27,7 +27,7 @@ const Layout = () => {
   }
 
   return (
-    <PanelGroup direction="horizontal">
+    <PanelGroup direction="horizontal" autoSaveId="sidebar">
       <div className="flex h-full w-full bg-neutral-900 text-white">
         <Panel
           ref={ref}
