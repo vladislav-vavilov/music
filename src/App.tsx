@@ -13,18 +13,6 @@ import {
 import { BsArrowsExpandVertical } from 'react-icons/bs'
 import { useRef, useState } from 'react'
 
-const Test = () => {
-  return (
-    <PanelGroup autoSaveId="example" direction="horizontal">
-      <Panel defaultSize={25}>panel</Panel>
-      <PanelResizeHandle>hello</PanelResizeHandle>
-      <Panel>panel</Panel>
-      <PanelResizeHandle />
-      <Panel defaultSize={25}>panel</Panel>
-    </PanelGroup>
-  )
-}
-
 const Layout = () => {
   const ref = useRef<ImperativePanelHandle>(null)
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false)
@@ -65,8 +53,8 @@ const Layout = () => {
             </button>
           </div>
         </PanelResizeHandle>
-        <Panel defaultSize={80}>
-          <div className="mb-4 mr-4 flex h-full flex-auto flex-col gap-4 overflow-hidden">
+        <Panel defaultSize={80} className="mb-4 mr-4">
+          <div className="flex h-full flex-auto flex-col gap-4 overflow-hidden">
             <div className="flex flex-auto flex-col overflow-y-auto">
               <header className="z-10 flex justify-center bg-neutral-900 p-4">
                 <SearchInput />
@@ -94,7 +82,6 @@ function App() {
         <Route path="/songs">
           <Route path=":id" element={<Song />} />
         </Route>
-        <Route path="/test" element={<Test />} />
       </Route>
     </Routes>
   )

@@ -74,7 +74,7 @@ SongCard.Small = ({
           </Link>
         </div>
       </div>
-      <span className="text-neutral-300">{albumName}</span>
+      {albumName && <span className="text-neutral-300">{albumName}</span>}
       <div className="flex items-center gap-6 text-neutral-400">
         <button className="transition-colors duration-300 hover:text-white">
           {inLibrary && <IoIosHeart size="22" />}
@@ -89,13 +89,13 @@ SongCard.Small = ({
 SongCard.Medium = ({ id, title, thumbnails, artists }: SongCardMediumProps) => {
   return (
     <div className="group w-max">
-      <button className="relative">
+      <div className="relative">
         <img className="h-full w-full rounded-md" src={thumbnails[1].url} />
         <PlayButton
           size={42}
           className="invisible absolute bottom-2 right-2 opacity-0 group-hover:visible group-hover:opacity-100"
         />
-      </button>
+      </div>
       <div className="flex flex-col">
         <Link
           to={`/songs/${id}`}
@@ -116,10 +116,13 @@ SongCard.Medium = ({ id, title, thumbnails, artists }: SongCardMediumProps) => {
 
 SongCard.Large = ({ id, title, thumbnails, artists }: SongCardLargeProps) => {
   return (
-    <BlurredBackground className="rounded-md" imageURI={thumbnails[1].url}>
-      <div className="flex flex-col gap-4 p-4">
-        <img className="mb-2 h-32 w-32 rounded-md" src={thumbnails[1].url} />
+    <BlurredBackground
+      className="group rounded-md"
+      imageURI={thumbnails[1].url}
+    >
+      <div className="flex items-end justify-between gap-4 p-4">
         <div className="flex flex-col">
+          <img className="mb-2 h-32 w-32 rounded-md" src={thumbnails[1].url} />
           <Link
             to={`/songs/${id}`}
             className="text-3xl font-medium hover:underline"
@@ -133,7 +136,7 @@ SongCard.Large = ({ id, title, thumbnails, artists }: SongCardLargeProps) => {
             {artists[0].name}
           </Link>
         </div>
-        {/*<PlayButton className="invisible z-10 opacity-0 group-hover:visible group-hover:opacity-100" />*/}
+        <PlayButton className="invisible z-10 opacity-0 group-hover:visible group-hover:opacity-100" />
       </div>
     </BlurredBackground>
   )

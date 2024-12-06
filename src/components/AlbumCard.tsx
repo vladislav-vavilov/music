@@ -27,9 +27,14 @@ export const AlbumCard = ({
             {title}
           </h3>
           <div className="flex flex-col text-sm leading-none">
-            <Link to={`/artists/${artists[0].id}`} className="hover:underline">
-              {artists[0].name}
-            </Link>
+            <object>
+              <Link
+                to={`/artists/${artists[0].id}`}
+                className="hover:underline"
+              >
+                {artists[0].name}
+              </Link>
+            </object>
             <span className="text-neutral-300">{year}</span>
           </div>
         </div>

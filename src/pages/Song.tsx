@@ -1,6 +1,7 @@
 import { Link } from 'react-router'
 import { IoIosHeartEmpty } from 'react-icons/io'
 import { PlayButton } from '../components/PlayButton'
+import { BlurredBackground } from '../components/BlurredBackground'
 
 const song = {
   title: 'Blinding Lights',
@@ -23,8 +24,11 @@ export const Song = () => {
   }).format(song.viewCount)
 
   return (
-    <div className="h-full p-6">
-      <div className="relative z-10 flex gap-8">
+    <BlurredBackground
+      className="-m-4 h-full flex-auto p-6"
+      imageURI={song.thumbnails[0].url}
+    >
+      <div className="flex gap-6">
         <img className="rounded-md" src={song.thumbnails[0].url} />
         <div className="flex flex-auto flex-col gap-4">
           <div className="flex flex-col">
@@ -70,10 +74,6 @@ export const Song = () => {
           </ul>
         </div>
       </div>
-      <img
-        className="absolute left-0 top-0 h-full w-full object-cover blur-[128px] brightness-75"
-        src={song.thumbnails[0].url}
-      />
-    </div>
+    </BlurredBackground>
   )
 }
