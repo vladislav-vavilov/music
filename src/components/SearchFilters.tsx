@@ -1,21 +1,25 @@
-import { For } from 'solid-js'
 import { searchFilters } from '../consts'
-import { A } from '@solidjs/router'
+import { NavLink } from 'react-router'
+import { cn } from '../utils'
 
 export const SearchFilters = () => {
   return (
-    <div class="flex items-center gap-2 overflow-x-auto">
-      <For each={searchFilters}>
-        {(item) => (
-          <A
-            href={`/search${item.path}`}
-            activeClass="bg-white text-black font-medium"
-            class="whitespace-nowrap rounded-md bg-neutral-800 p-2 leading-none"
-          >
-            {item.name}
-          </A>
-        )}
-      </For>
+    <div className="flex items-center gap-2">
+      {searchFilters.map((item) => (
+        <NavLink
+          key={item.path}
+          to={`/search${item.path}`}
+          className={({ isActive }) => {
+            return cn(
+              'whitespace-nowrap rounded-md bg-neutral-800 p-2 leading-none',
+              isActive && 'bg-white font-medium text-black',
+              !isActive && 'bg-neutral-800'
+            )
+          }}
+        >
+          {item.name}
+        </NavLink>
+      ))}
     </div>
   )
 }

@@ -1,10 +1,8 @@
-import { For } from 'solid-js'
-import { SearchInput } from '../components/SearchInput/SearchInput'
 import { SongCard } from '../components/SongCard'
 import { SearchFilters } from '../components/SearchFilters'
 import { ArtistCard } from '../components/ArtistCard'
 import { AlbumCard } from '../components/AlbumCard'
-import { A } from '@solidjs/router'
+import { Link } from 'react-router'
 
 const searchResults = [
   {
@@ -220,8 +218,8 @@ export const Search = () => {
   return (
     <>
       <SearchFilters />
-      <div class="flex gap-2">
-        <div class="flex-auto">
+      <div className="flex gap-2">
+        <div className="flex-auto">
           <SongCard
             id={topResult.videoId}
             title={topResult.title}
@@ -230,26 +228,25 @@ export const Search = () => {
             size="lg"
           />
         </div>
-        <div class="flex-auto">
-          <For each={searchResults}>
-            {(item) => (
-              <SongCard
-                id={item.videoId}
-                title={item.title}
-                inLibrary={item.inLibrary}
-                duration={item.duration}
-                thumbnails={item.thumbnails}
-                artists={item.artists}
-                size="sm"
-              />
-            )}
-          </For>
-          <A
-            href="/search/songs"
-            class="pl-2 text-neutral-300 underline underline-offset-2"
+        <div className="flex-auto">
+          {searchResults.map((item) => (
+            <SongCard
+              key={item.videoId}
+              id={item.videoId}
+              title={item.title}
+              inLibrary={item.inLibrary}
+              duration={item.duration}
+              thumbnails={item.thumbnails}
+              artists={item.artists}
+              size="sm"
+            />
+          ))}
+          <Link
+            to="/search/songs"
+            className="pl-2 text-neutral-300 underline underline-offset-2"
           >
             More songs
-          </A>
+          </Link>
         </div>
       </div>
       <SongCard
@@ -270,6 +267,24 @@ export const Search = () => {
         name={artist.artists[0].name}
         subscribers={artist.subscribers}
         thumbnail={artist.thumbnails[1]}
+      />
+      <AlbumCard
+        title={album.title}
+        thumbnail={album.thumbnails[1]}
+        artists={album.artists}
+        year={album.year}
+      />
+      <AlbumCard
+        title={album.title}
+        thumbnail={album.thumbnails[1]}
+        artists={album.artists}
+        year={album.year}
+      />
+      <AlbumCard
+        title={album.title}
+        thumbnail={album.thumbnails[1]}
+        artists={album.artists}
+        year={album.year}
       />
     </>
   )
