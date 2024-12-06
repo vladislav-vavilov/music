@@ -3,6 +3,7 @@ import { SearchFilters } from '../components/SearchFilters'
 import { ArtistCard } from '../components/ArtistCard'
 import { AlbumCard } from '../components/AlbumCard'
 import { Link } from 'react-router'
+import { BlurredBackground } from '../components/BlurredBackground'
 
 const searchResults = [
   {
@@ -255,6 +256,13 @@ export const Search = () => {
         thumbnails={topResult.thumbnails}
         artists={topResult.artists}
         size="md"
+      />
+      <SongCard
+        id={topResult.videoId}
+        title={topResult.title}
+        thumbnails={topResult.thumbnails}
+        artists={topResult.artists}
+        size="lg"
       />
       <AlbumCard
         title={album.title}

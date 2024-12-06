@@ -2,6 +2,7 @@ import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io'
 import { artist, thumbnail } from '../types'
 import { PlayButton } from './PlayButton'
 import { Link } from 'react-router'
+import { BlurredBackground } from './BlurredBackground'
 
 type CommonProps = {
   id: string
@@ -115,8 +116,8 @@ SongCard.Medium = ({ id, title, thumbnails, artists }: SongCardMediumProps) => {
 
 SongCard.Large = ({ id, title, thumbnails, artists }: SongCardLargeProps) => {
   return (
-    <div className="group relative flex min-w-32 items-end justify-between overflow-hidden rounded-md bg-neutral-800 p-4">
-      <div className="relative z-10">
+    <BlurredBackground className="rounded-md" imageURI={thumbnails[1].url}>
+      <div className="flex flex-col gap-4 p-4">
         <img className="mb-2 h-32 w-32 rounded-md" src={thumbnails[1].url} />
         <div className="flex flex-col">
           <Link
@@ -132,12 +133,8 @@ SongCard.Large = ({ id, title, thumbnails, artists }: SongCardLargeProps) => {
             {artists[0].name}
           </Link>
         </div>
+        {/*<PlayButton className="invisible z-10 opacity-0 group-hover:visible group-hover:opacity-100" />*/}
       </div>
-      <img
-        className="absolute left-0 top-0 h-full w-full object-cover blur-3xl"
-        src={thumbnails[1].url}
-      />
-      <PlayButton className="invisible z-10 opacity-0 group-hover:visible group-hover:opacity-100" />
-    </div>
+    </BlurredBackground>
   )
 }
